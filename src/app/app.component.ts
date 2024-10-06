@@ -5,13 +5,13 @@ import { Component } from '@angular/core';
   standalone: true,
   imports:[CommonModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']  // Corrected to styleUrls
+  styleUrls: ['./app.component.css']  
 })
 export class AppComponent {
   title = 'paymentt';
 
 
-  isFlipped: boolean = false; // Initial state of the card
+  isFlipped: boolean = false; 
     cardNumber: string = '';
     cardHolder: string = '';
     expMonth: string = 'MM ';
@@ -22,10 +22,10 @@ export class AppComponent {
   // Handle card number input
   updateCardNumber(event: Event) {
     const input = event.target as HTMLInputElement;
-    const value = input.value.replace(/\D/g, '').slice(0, 16); // Allow only numbers
-    this.cardNumber = value.replace(/(\d{4})(?=\d)/g, '$1 '); // Format with spaces
+    const value = input.value.replace(/\D/g, '').slice(0, 16); 
+    this.cardNumber = value.replace(/(\d{4})(?=\d)/g, '$1 '); 
     if (value.length === 16) {
-      this.cardNumberError = 'only numbers are allowed'; // Clear error if valid
+      this.cardNumberError = 'only numbers are allowed'; 
     } else {
       this.cardNumberError = 'Card number must be 16 digits.';
     }
@@ -34,38 +34,37 @@ export class AppComponent {
   // Handle card holder input
   updateCardHolder(event: Event) {
     const input = event.target as HTMLInputElement;
-    this.cardHolder = input.value; // Update card holder state
+    this.cardHolder = input.value; 
   }
 
   // Handle expiration month input
   updateExpMonth(event: Event) {
     const select = event.target as HTMLSelectElement;
-    this.expMonth = select.value; // Update expiration month
+    this.expMonth = select.value;
   }
 
   // Handle expiration year input
   updateExpYear(event: Event) {
     const select = event.target as HTMLSelectElement;
-    this.expYear = select.value; // Update expiration year
+    this.expYear = select.value;
   }
 
   // Handle CVV input
   updateCVV(event: Event) {
     const input = event.target as HTMLInputElement;
-    this.cvv = input.value; // Update CVV state
-    // Flip the card when the input is focused
+    this.cvv = input.value; 
     this.flipCard(true);
   }
 
   // Handle card flipping
   flipCard(isHovering: boolean) {
-    this.isFlipped = isHovering; // Update the state based on hover or focus
+    this.isFlipped = isHovering; 
   }
 
-  // Method to submit the form
+
   submitForm(event: Event) {
     event.preventDefault();
-    // Handle form submission
+    
     console.log({
       cardNumber: this.cardNumber,
       cardHolder: this.cardHolder,

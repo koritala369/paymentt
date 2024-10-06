@@ -165,8 +165,8 @@
 }
 
 .error-message {
-    color: red; /* Change color as needed */
-    font-size: 12px; /* Adjust font size as needed */
+    color: red; 
+    font-size: 12px;
     margin-top: 5px; /* Space between input and error message */
 }
 
@@ -190,7 +190,7 @@
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, .3);
     color: #444;
-    transition: border-color 0.3s; /* Smooth transition for border color */
+    transition: border-color 0.3s;
 }
 
 .cvv-input:focus {
@@ -198,14 +198,14 @@
     outline: none; /* Remove default outline */
 }
 
-/* Optional: Add some styling when hovering over the input */
+
 .cvv-input:hover {
     border-color: deeppink; /* Change border color on hover */
 }
 
-/* Error message styling */
+
 .error-message {
-    color: red; /* Change color as needed */
-    font-size: 12px; /* Adjust font size as needed */
-    margin-top: 5px; /* Space between input and error message */
+    color: red; 
+    font-size: 12px;
+    margin-top: 5px; 
 }
