@@ -23,13 +23,16 @@ export class AppComponent {
   updateCardNumber(event: Event) {
     const input = event.target as HTMLInputElement;
     const value = input.value.replace(/\D/g, '').slice(0, 16); 
-    this.cardNumber = value.replace(/(\d{4})(?=\d)/g, '$1 '); 
-    if (value.length === 16) {
-      this.cardNumberError = 'only numbers are allowed'; 
-    } else {
-      this.cardNumberError = 'Card number must be 16 digits.';
-    }
+    if (input.value.match(/[a-zA-Z]/)) {
+      this.cardNumberError = 'Only numbers are allowed.'; // Error for alphabetic characters
+  } else if (value.length < 16) {
+      this.cardNumberError = 'Card number must be 16 digits.'; // Error for length
+  } else {
+      this.cardNumberError = ''; // Clear error if valid
   }
+  this.cardNumber = value.replace(/(.{4})/g, '$1 ').trim();
+  this.cardNumber = value.replace(/(\d{4})(?=\d)/g, '$1 '); 
+}
 
   // Handle card holder input
   updateCardHolder(event: Event) {

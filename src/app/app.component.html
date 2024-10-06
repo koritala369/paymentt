@@ -1,94 +1,84 @@
 <div class="container">
-  <div class="card-container" (mouseenter)="flipCard(true)" (mouseleave)="flipCard(false)">
-      <div class="front" [ngClass]="{'flipped': isFlipped}">
-          <div class="image">
-              <img src="../assets/chip.png" alt="Chip">
-              <img src="../assets/visa.png" alt="Visa">
-          </div>
-          <div class="card-number-box">{{ cardNumber || '#### #### #### ####' }}</div>
-          <div class="flexbox">
-              <div class="box">
-                  <span>card holder</span>
-                  <div class="card-holder-name">{{ cardHolder || 'FULL NAME' }}</div>
-              </div>
-              <div class="box">
-                  <span>expires</span>
-                  <div class="expiration">
-                    <span class="exp-month">{{ expMonth }}</span>
-                    <span class="exp-year">{{ expYear }}</span> 
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="back" [ngClass]="{'flipped': isFlipped}">
-          <div class="stripe"></div>
+    <div class="card-container" [ngClass]="{'flipped': isFlipped}" 
+         (mouseenter)="flipCard(true)" 
+         (mouseleave)="flipCard(false)">
+      <div class="front">
+        <div class="image">
+          <img src="../assets/chip.png" alt="Chip">
+          <img src="../assets/visa.png" alt="Visa">
+        </div>
+        <div class="card-number-box">{{ cardNumber || '#### #### #### ####' }}</div>
+        <div class="flexbox">
           <div class="box">
-              <span>cvv</span>
-              <div class="cvv-box">{{ cvv || '***' }}</div>
-              <img src="../assets/visa.png" alt="Visa">
+            <span>card holder</span>
+            <div class="card-holder-name">{{ cardHolder || 'FULL NAME' }}</div>
           </div>
+          <div class="box">
+            <span>expires</span>
+            <div class="expiration">
+              <span class="exp-month">{{ expMonth }}</span>
+              <span class="exp-year">{{ expYear }}</span>
+            </div>
+          </div>
+        </div>
       </div>
-  </div>
-  <div class="inputBox">
-    <span>cvv</span>
-    <input 
-        type="text" 
-        maxlength="4" 
-        class="cvv-input" 
-        (input)="updateCVV($event)" 
-        (focus)="flipCard(true)"  
-        (blur)="flipCard(false)"  
-    >
-</div>
-
-  <form (submit)="submitForm($event)">
+  
+      <div class="back">
+        <div class="stripe"></div>
+        <div class="box">
+          <span>cvv</span>
+          <div class="cvv-box">{{ cvv || '***' }}</div>
+          <img src="../assets/visa.png" alt="Visa">
+        </div>
+      </div>
+    </div>
+  
+    <form (submit)="submitForm($event)">
       <div class="inputBox">
-          <span>card number</span>
-          <input 
-              type="text" 
-              maxlength="19" 
-              class="card-number-input" 
-              (input)="updateCardNumber($event)"
-              placeholder="#### #### #### ####"
-          >
-          <div *ngIf="cardNumberError" class="error-message">{{ cardNumberError }}</div>
+        <span>card number</span>
+        <input type="text" maxlength="16"   class="card-number-input" (input)="updateCardNumber($event)">
+        <div *ngIf="cardNumberError" class="error-message">{{ cardNumberError }}</div>
       </div>
       <div class="inputBox">
-          <span>card holder</span>
-          <input type="text" class="card-holder-input" (input)="updateCardHolder($event)">
+        <span>card holder</span>
+        <input type="text" class="card-holder-input" (input)="updateCardHolder($event)">
       </div>
       <div class="flexbox">
-          <div class="inputBox">
-              <span>expiration mm</span>
-              <select class="month-input" (change)="updateExpMonth($event)">
-                  <option value="month" selected disabled>month</option>
-                  <option value="01">01</option>
-                  <option value="02">02</option>
-                  <option value="03">03</option>
-                  <option value="04">04</option>
-                  <option value="05">05</option>
-                  <option value="06">06</option>
-                  <option value="07">07</option>
-                  <option value="08">08</option>
-                  <option value="09">09</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-              </select>
-          </div>
-          <div class="inputBox" style="margin-left: 20px;">
-              <span>expiration yyyy</span>
-              <select class="year-input" (change)="updateExpYear($event)">
-                  <option value="year" selected disabled>year</option>
-                  <option *ngFor="let year of [2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]" [value]="year">{{ year }}</option>
-              </select>
-          </div>
-          <div class="inputBox">
-              <span>cvv</span>
-              <input type="text" maxlength="4" class="cvv-input" (input)="updateCVV($event)" (mouseenter)="flipCard(true)" (mouseleave)="flipCard(false)">
-          </div>
+        <div class="inputBox">
+            <span>expiration mm</span>
+            <select class="month-input" (change)="updateExpMonth($event)">
+                <option value="month" selected disabled>month</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+        <div class="inputBox" style="margin-left: 20px;">
+            <span>expiration yyyy</span>
+            <select class="year-input" (change)="updateExpYear($event)">
+                <option value="year" selected disabled>year</option>
+                <option *ngFor="let year of [2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]" [value]="year">{{ year }}</option>
+            </select>
+        </div>
+        <div class="inputBox">
+          <span>cvv</span>
+          <input type="text" maxlength="4" class="cvv-input" (input)="updateCVV($event)"
+                 (focus)="flipCard(true)" 
+                 (blur)="flipCard(false)">
+        </div>
       </div>
       <input type="submit" value="submit" class="submit-btn">
-  </form>
-</div>
+    </form>
+  </div>
+  
+
+
